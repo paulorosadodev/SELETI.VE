@@ -18,8 +18,7 @@ def nova_empresa(request):
         nicho = request.POST.get('nicho')
         caracteristicas = request.POST.get('caracteristicas')
         tecnologias = request.POST.getlist('tecnologias')
-        
-        
+        logo = request.FILES.get('logo')
         
         if (len(nome.strip()) == 0 or len(email.strip()) == 0 or len(cidade.strip()) == 0 or len(endereco.strip()) == 0 or len(nicho.strip()) == 0 or len(caracteristicas.strip()) == 0 or (not logo)): 
             messages.add_message(request, constants.ERROR, 'Preencha todos os campos')

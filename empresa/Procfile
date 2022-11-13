@@ -1,0 +1,1 @@
+web: gunicorn SELETI.VE.wsgi
