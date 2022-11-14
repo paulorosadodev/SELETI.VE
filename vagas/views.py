@@ -91,23 +91,14 @@ def envia_email(request, id_vaga):
     email = EmailMultiAlternatives(assunto, text_content, settings.EMAIL_HOST_USER, [vaga.email,])
     email.attach_alternative(html_content, "text/html")
     
-    if email.send():
-        mail = Emails(
-            vaga=vaga,
-            assunto=assunto,
-            corpo=corpo,
-            enviado=True
-        )
-        mail.save()
-        messages.add_message(request, constants.SUCCESS, 'Email enviado com sucesso.')
-        return redirect(f'/vagas/vaga/{id_vaga}')
-    else:
-        mail = Emails(
-            vaga=vaga,
-            assunto=assunto,
-            corpo=corpo,
-            enviado=False
-        )
-        mail.save()
-        messages.add_message(request, constants.ERROR, 'Não conseguimos enviar o seu E-mail.')
-        return redirect(f'/vagas/vaga/{id_vaga}')
+    email.send()
+    mail = Emails(
+        vaga=vaga,
+        assunto=assunto,
+        corpo=corpo,
+        enviado=True
+    )
+    mail.save()
+    messages.add_message(request, constants.SUCCESS, 'Email enviado com sucesso.')
+    return redirect(f'/vagas/vaga/{id_vaga}')
+    
