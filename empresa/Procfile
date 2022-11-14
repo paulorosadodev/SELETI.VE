@@ -1,1 +1,0 @@
-web: gunicorn SELETI.VE.wsgi web: gunicorn app.wsgi --log-file -
